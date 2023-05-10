@@ -58,6 +58,22 @@ public class MyFrame extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		//눌러진 버튼의 action command 읽어오기
+		String cmd=e.getActionCommand();
+		/*
+		 *  java 에서 문자열의 참조값이 같은지 비교 할때는  비교 연산자 == 를 이용해서 비교 하면 되지만
+		 *  문자열의 참조값이 아닌 내용이 같은지 비교할때는 String 의 .equals() 메소드를 이용해서 비교해야한다.
+		 *  
+		 *  왜냐하면 java 에서는 문자열을 만드는 방법에 따라서 내용은 같지만 참조값이 다르게 나오는 경우도 
+		 *  있기 때문이다.  따라서 문자열의 내용이 같은지 정확히 비교 할때는 반드시 .equals() 메소드를 
+		 *  이용해야 한다. (이걸 까먹으면 밤 셀수도 있음)
+		 */
+		if(cmd.equals("send")) {
+			JOptionPane.showMessageDialog(this, "전송합니다.");
+		}else if(cmd.equals("delete")) {
+			JOptionPane.showMessageDialog(this, "삭제합니다.");
+		}else if(cmd.equals("update")) {
+			JOptionPane.showMessageDialog(this, "수정합니다.");
+		}
 	}
 }
