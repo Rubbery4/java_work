@@ -13,7 +13,7 @@ public class MyFrame extends JFrame{
 		this.setBounds(100, 100, 500, 500);
 		// 이프레임(MyFrame)의 x 버튼 (close 버튼) 을 눌렀을때 프로세스도 같이 종료 되도록 설정
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// 레이아웃 매니저는 아직 사용하지 않겟따 (모든 UI 를 절대 좌표에 배치 하겠다)
+		// 레이아웃 매니저는 아직 사용하지 않겠다 (모든 UI 를 절대 좌표에 배치 하겠다)
 		this.setLayout(null);
 		// 버튼 하나를 만들어서
 		JButton btn1 = new JButton("눌러봐요");
