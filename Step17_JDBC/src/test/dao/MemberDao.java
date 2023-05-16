@@ -87,7 +87,7 @@ public class MemberDao {
 		}
 	}
 	
-	public boolean delete(MemberDto dto) {
+	public boolean delete(int num) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		// insert, update, delete 작업을 통해 변화된(추가, 수정, 삭제) row의 갯수를 담을 변수
@@ -101,7 +101,7 @@ public class MemberDao {
 	    			+ " where num=?";
 	    	pstmt = conn.prepareStatement(sql);
 	    	// PreparedStatement 객체의 메소드를 이용해서 미완성인 sql 문을 완성시키기
-	    	pstmt.setInt(1, dto.getNum());
+	    	pstmt.setInt(1, num);
 	    	// sql 문 실행하기
 	    	rowCount = pstmt.executeUpdate();
 	    	System.out.println("삭제 작업을 완료 했습니다.");
