@@ -24,7 +24,7 @@ import test.dto.MemberDto;
 
 public class TestFrame extends JFrame implements ActionListener {
 	
-	JTextField inputAddr, inputName;
+	JTextField inputAddr, inputName, inputNum;
 	DefaultTableModel model;
 	
 	// 생성자
@@ -45,6 +45,13 @@ public class TestFrame extends JFrame implements ActionListener {
 		addBtn.setActionCommand("add");
 		addBtn.addActionListener(this);
 		
+		JLabel label3 = new JLabel("번호");
+		inputNum = new JTextField(10);
+		
+		JButton deleteBtn = new JButton("삭제");
+		deleteBtn.setActionCommand("delete");
+		deleteBtn.addActionListener(this);
+		
 		// 패널에 UI  를 배치하고
 		JPanel panel = new JPanel();
 		panel.add(label1);
@@ -52,6 +59,10 @@ public class TestFrame extends JFrame implements ActionListener {
 		panel.add(label2);
 		panel.add(inputAddr);
 		panel.add(addBtn);
+		panel.add(label3);
+		panel.add(inputNum);
+		panel.add(deleteBtn);
+		
 		
 		//패널쨰로 프레임의 북쪽에 배치
 		add(panel, BorderLayout.NORTH);
@@ -102,8 +113,12 @@ public class TestFrame extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		//눌러진 버튼의 action command 읽어오기
+		String cmd=e.getActionCommand();
 		MemberDao dao = new MemberDao();
 		MemberDto dto = new MemberDto();
+		if (cmd.equals("add")) {
+
 		//DB 연결객체를 담을 지역 변수 만들기
 		String name = inputName.getText();
 		String addr = inputAddr.getText();
@@ -122,6 +137,22 @@ public class TestFrame extends JFrame implements ActionListener {
 			for(MemberDto tmp:list) {
 				Object[] row4 = {tmp.getNum(), tmp.getName(), tmp.getAddr()};
 				model.addRow(row4);
+			}
+		}
+		} else if(cmd.equals("delete")) {
+			String num = inputNum.getText();
+			int num2 = Integer.parseInt(num);
+			boolean daoDelete = dao.delete(num2);
+			if (daoDelete) {
+				JOptionPane.showMessageDialog(this, num2+"행 삭제완료.");
+				// 기존에 출력된 내용을 모두 삭제후 다시출력
+				model.setRowCount(0);
+				// 회원목록 얻어오기
+				List<MemberDto> list = new MemberDao().getList();
+				for(MemberDto tmp:list) {
+					Object[] row4 = {tmp.getNum(), tmp.getName(), tmp.getAddr()};
+					model.addRow(row4);
+				}
 			}
 		}
 	      

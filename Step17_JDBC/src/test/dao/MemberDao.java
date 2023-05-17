@@ -107,7 +107,6 @@ public class MemberDao {
 	    	pstmt.setInt(1, num);
 	    	// sql 문 실행하기
 	    	rowCount = pstmt.executeUpdate();
-	    	System.out.println("삭제 작업을 완료 했습니다.");
 	    } catch(Exception e) {
 	    	  e.printStackTrace();
 	      } finally { //예외가 발생을 하던 안하던 실행이 보장되는 블럭에서 마무리 작업
