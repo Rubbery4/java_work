@@ -13,7 +13,6 @@ public class MainClass03 {
 //		BufferedReader br = new BufferedReader(isr);
 		// 위의 코드를 1줄로 표현하면 아래와 같다.
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		
 		System.out.println("문자열 한줄 입력:");
 		try {
 			// BufferedReader 객체의 readLine() 메소드를 이용해서 문자열 한줄을 읽어 들이기
